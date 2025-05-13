@@ -1,11 +1,13 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>jp.gihyo.jenkinsbook</groupId>
   <artifactId>sampleproject</artifactId>
   <version>1.0.0</version>
   <packaging>war</packaging>
   <name>${project.artifactId}</name>
-  
+
   <dependencies>
     <!-- Web Libraries -->
     <dependency>
@@ -20,7 +22,7 @@
       <version>${servlet-api.version}</version>
       <scope>provided</scope>
     </dependency>
-    
+
     <!-- JUnit Libraries -->
     <dependency>
       <groupId>junit</groupId>
@@ -35,39 +37,39 @@
       <scope>test</scope>
     </dependency>
   </dependencies>
-  
+
   <properties>
     <!-- Project Properties -->
     <java.version>1.8</java.version>
     <maven.test.failure.ignore>true</maven.test.failure.ignore>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-    
+
     <!-- Maven Properties -->
     <maven-compiler.version>3.6.1</maven-compiler.version>
     <maven-site.version>3.6.1</maven-site.version>
     <maven-surefire-report.version>2.20</maven-surefire-report.version>
-    <maven-war.version>3.0.0</maven-war.version>
-    
+    <maven-war.version>3.3.2</maven-war.version>
+
     <!-- Web Servlet Properties -->
     <servlet-api.version>3.1.0</servlet-api.version>
     <jsp-api.version>2.3.1</jsp-api.version>
-    
+
     <!-- JUnit Properties -->
     <junit.version>4.12</junit.version>
     <easymock.version>3.4</easymock.version>
-    
+
     <!-- Checkstyle Properties -->
     <maven-checkstyle.version>2.17</maven-checkstyle.version>
-    
+
     <!-- Findbugs Properties -->
     <findbugs-maven.version>3.0.4</findbugs-maven.version>
-    
+
     <!-- JaCoCo Properties -->
-    <jacoco-maven.version>0.7.9</jacoco-maven.version>
+    <jacoco-maven.version>0.8.8</jacoco-maven.version>
     <jacoco.include.package>**/*</jacoco.include.package>
   </properties>
-  
+
   <build>
     <plugins>
       <!-- Build Configuration -->
@@ -95,7 +97,7 @@
           <failOnMissingWebXml>false</failOnMissingWebXml>
         </configuration>
       </plugin>
-      
+
       <!-- Build Configuration for Checkstyle -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
@@ -115,9 +117,23 @@
           </execution>
         </executions>
       </plugin>
-      
-      <!-- Build Configuration for Findbugs -->
+
       <plugin>
+        <groupId>com.github.spotbugs</groupId>
+        <artifactId>spotbugs-maven-plugin</artifactId>
+        <version>4.7.3.0</version>
+        <executions>
+          <execution>
+            <phase>verify</phase>
+            <goals>
+              <goal>check</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+
+      <!-- Build Configuration for Findbugs -->
+      <!-- <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>findbugs-maven-plugin</artifactId>
         <version>${findbugs-maven.version}</version>
@@ -134,8 +150,8 @@
             </goals>
           </execution>
         </executions>
-      </plugin>
-      
+      </plugin> -->
+
       <!-- Build Configuration for JaCoCo -->
       <plugin>
         <groupId>org.jacoco</groupId>
@@ -150,7 +166,7 @@
           </execution>
         </executions>
       </plugin>
-      
+
     </plugins>
   </build>
 </project>
